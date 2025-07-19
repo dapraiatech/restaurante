@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pizzaria Bella Italia</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+</head>
+<body>
+  <video autoplay loop muted playsinline id="bg-video">
+    <source src="videoplayback.webm" type="video/webm">
+    Seu navegador não suporta vídeo em background.
+  </video>
+  <div class="overlay"></div>
+  <header>
+    <div class="header-row">
+      <img src="logo.png" alt="Logo Pizzaria Bella Italia" class="banner-header">
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <h2>Bem-vindo à verdadeira experiência italiana!</h2>
+      <p>Sabores autênticos, ingredientes frescos e o melhor da Itália para você.</p>
+      <a href="#cardapio" class="cta">Ver Cardápio</a>
+    </section>
+    <section id="cardapio" class="cardapio">
+      <h2>Nosso Cardápio</h2>
+      <div class="pizzas">
+        <div class="pizza-card animate">
+          <img src="pizza1.webp" alt="Pizza Margherita">
+          <h3>Margherita</h3>
+          <p>Molho de tomate, mussarela, manjericão</p>
+          <span class="preco">R$ 39,90</span>
+        </div>
+        <div class="pizza-card animate">
+          <img src="pizza2.jpg" alt="Pizza Calabresa">
+          <h3>Calabresa</h3>
+          <p>Calabresa fatiada, cebola, mussarela</p>
+          <span class="preco">R$ 44,90</span>
+        </div>
+        <div class="pizza-card animate">
+          <img src="pizza3.jpg" alt="Pizza Quatro Queijos">
+          <h3>Quatro Queijos</h3>
+          <p>Mussarela, gorgonzola, parmesão, catupiry</p>
+          <span class="preco">R$ 49,90</span>
+        </div>
+        <div class="pizza-card animate">
+          <img src="pizza4.jpg" alt="Pizza Portuguesa">
+          <h3>Portuguesa</h3>
+          <p>Presunto, ovo, cebola, azeitona, mussarela</p>
+          <span class="preco">R$ 47,90</span>
+        </div>
+        <div class="pizza-card animate">
+          <img src="pizza5.jpg" alt="Pizza Pepperoni">
+          <h3>Doce</h3>
+          <p>chocolate, Morango, Creme de Leite</p>
+          <span class="preco">R$ 46,90</span>
+        </div>
+        <div class="pizza-card animate">
+          <img src="pizza6.jpg" alt="Pizza Vegetariana">
+          <h3>Vegetariana</h3>
+          <p>Tomate, pimentão, cebola, azeitona, mussarela</p>
+          <span class="preco">R$ 42,90</span>
+        </div>
+      </div>
+    </section>
+    <section id="bebidas" class="bebidas">
+      <h2>Bebidas</h2>
+      <div class="bebidas-cards">
+        <div class="bebida-card animate">
+          <img src="bebida1.webp" alt="Água Mineral">
+          <h3>Cervejas</h3>
+          <p>Long Neck, Litrão</p>
+          <span class="preco">R$ 4,00</span>
+        </div>
+        <div class="bebida-card animate">
+          <img src="bebida2.jpg" alt="Refrigerante Lata">
+          <h3>Refrigerante Lata</h3>
+          <p>Coca-Cola, Guaraná, Fanta, Sprite</p>
+          <span class="preco">R$ 7,00</span>
+        </div>
+        <div class="bebida-card animate">
+          <img src="bebida3.jpg" alt="Suco Natural">
+          <h3>Vinhos</h3>
+          <p>Seco, Suave</p>
+          <span class="preco">R$ 9,00</span>
+        </div>
+      </div>
+    </section>
+    <section id="delivery" class="delivery">
+      <div class="delivery-info">
+        <div class="motoboy-anim">
+          <div style="font-size: 4.5rem; line-height: 1; margin-bottom: 8px;">🏍️</div>
+          <div class="delivery-text">
+            <h2>Delivery para toda a cidade!</h2>
+            <p>Peça sua pizza e receba no conforto da sua casa, em qualquer bairro de São Paulo.</p>
+          </div>
+        </div>
+        <div class="maps-box">
+          <iframe title="Localização Bella Italia" width="100%" height="220" style="border:0; border-radius:16px; box-shadow:0 2px 16px #0002;" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.902234567890!2d-46.63330968447544!3d-23.55051998468639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8c1b6b6b7%3A0x7e4b8b8b8b8b8b8b!2sPraça%20da%20Sé%2C%20São%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; Demonstração de Site Para Restaurantes. Criado por @dapraiatech</p>
+  </footer>
+  
+  <!-- Marca d'água flutuante -->
+  <a href="https://www.instagram.com/dapraiatech/" target="_blank" class="marca-dagua">
+    <img src="marca.jpg" alt="da praia tech" class="marca-img">
+  </a>
+  
+  <script src="script.js"></script>
+</body>
+</html>
