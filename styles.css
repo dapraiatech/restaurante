@@ -2172,3 +2172,42 @@ footer {
     padding: 12px;
   }
 }
+
+/* Botões flutuantes de redes sociais */
+.social-float {
+    position: fixed;
+    top: 32px;
+    left: 18px;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    z-index: 1000;
+}
+.social-btn {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #222;
+    color: #fff;
+    font-size: 1.6rem;
+    box-shadow: 0 2px 8px #0006;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    text-decoration: none;
+}
+.social-btn.facebook {
+    background: #009246; /* Verde Itália */
+    color: #fff;
+}
+.social-btn.instagram {
+    background: #fff; /* Branco */
+    color: #d6249f;
+    border: 2px solid #d1d1d1;
+}
+.social-btn.tiktok {
+    background: #ce2b37; /* Vermelho Itália */
+    color: #fff;
+}
