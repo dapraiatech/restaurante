@@ -299,6 +299,26 @@ class CarrinhoCompras {
     `;
     document.body.insertAdjacentHTML('beforeend', especificacoesHTML);
 
+    // Criar modal de opções de bebida
+    const bebidaOpcoesHTML = `
+      <div id="bebida-opcoes-modal" class="especificacoes-modal" style="display:none;">
+        <div class="especificacoes-content">
+          <div class="especificacoes-header">
+            <h3 id="bebida-nome">Escolher Opção</h3>
+            <button class="fechar-especificacoes" onclick="carrinho.fecharBebidaOpcoes()">×</button>
+          </div>
+          <div class="especificacoes-body">
+            <div id="bebida-opcoes-container"></div>
+          </div>
+          <div class="especificacoes-footer">
+            <button class="btn-cancelar" onclick="carrinho.fecharBebidaOpcoes()">Cancelar</button>
+            <button class="btn-adicionar-pizza" onclick="carrinho.adicionarBebidaEspecificada()">Adicionar ao Carrinho</button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', bebidaOpcoesHTML);
+
     // Criar botão flutuante do carrinho
     const botaoCarrinhoHTML = `
       <div id="botao-carrinho" class="botao-carrinho">
@@ -431,8 +451,9 @@ class CarrinhoCompras {
     // Verificar se é uma pizza
     if (card.classList.contains('pizza-card')) {
       this.abrirEspecificacoes(card);
+    } else if (card.classList.contains('bebida-card')) {
+      this.abrirBebidaOpcoes(card);
     } else {
-      // Para bebidas, adicionar diretamente
       this.adicionarItemDireto(nome, preco, descricao);
     }
   }
@@ -500,6 +521,9 @@ class CarrinhoCompras {
           }
           if (item.especificacoes.removidos && item.especificacoes.removidos.length > 0) {
             especificacoesText += `<br><small>➖ Sem: ${item.especificacoes.removidos.join(', ')}</small>`;
+          }
+          if (item.especificacoes.opcao) {
+            especificacoesText += `<br><small>🟢 Opção: ${item.especificacoes.opcao}</small>`;
           }
         }
 
@@ -1307,6 +1331,9 @@ class CarrinhoCompras {
         if (item.especificacoes.removidos && item.especificacoes.removidos.length > 0) {
           mensagem += `   ➖ *Sem:* ${item.especificacoes.removidos.join(', ')}\n`;
         }
+        if (item.especificacoes.opcao) {
+          mensagem += `   🟢 *Opção:* ${item.especificacoes.opcao}\n`;
+        }
       }
       
       mensagem += `   💰 R$ ${item.preco.toFixed(2).replace('.', ',')} cada\n`;
@@ -1399,6 +1426,47 @@ class CarrinhoCompras {
     mensagem += `\n🛵 *DELIVERY PARA TODA SÃO PAULO*`;
 
     return mensagem;
+  }
+
+  abrirBebidaOpcoes(card) {
+    const nome = card.querySelector('h3').textContent;
+    const descricao = card.querySelector('p').textContent;
+    // Definir preços por opção
+    let opcoes = [];
+    let precos = {};
+    if (nome.toLowerCase().includes('cerveja')) {
+      opcoes = ['Long Neck', 'Litrão'];
+      precos = { 'Long Neck': 4.00, 'Litrão': 9.00 };
+    } else if (nome.toLowerCase().includes('refrigerante')) {
+      opcoes = descricao.split(',').map(o => o.trim());
+      precos = { 'Coca-Cola': 7.00, 'Guaraná': 6.50, 'Fanta': 6.00, 'Sprite': 6.00 };
+    } else if (nome.toLowerCase().includes('vinho')) {
+      opcoes = ['Seco', 'Suave'];
+      precos = { 'Seco': 12.00, 'Suave': 10.00 };
+    } else {
+      opcoes = ['Única opção'];
+      precos = { 'Única opção': parseFloat(card.querySelector('.preco').textContent.replace('R$ ', '').replace(',', '.')) };
+    }
+    this.bebidaAtual = { nome, descricao, card, precos };
+    // Montar HTML das opções com preço
+    const container = document.getElementById('bebida-opcoes-container');
+    container.innerHTML = opcoes.map((op, i) =>
+      `<label><input type="radio" name="bebida-opcao" value="${op}" ${i===0?'checked':''}> ${op} <span style='color:#228b22;font-weight:bold'>R$ ${precos[op].toFixed(2).replace('.', ',')}</span></label>`
+    ).join('<br>');
+    document.getElementById('bebida-nome').textContent = `Escolha para ${nome}`;
+    document.getElementById('bebida-opcoes-modal').style.display = 'flex';
+  }
+
+  fecharBebidaOpcoes() {
+    document.getElementById('bebida-opcoes-modal').style.display = 'none';
+  }
+
+  adicionarBebidaEspecificada() {
+    const opcao = document.querySelector('input[name="bebida-opcao"]:checked')?.value;
+    const { nome, descricao, precos } = this.bebidaAtual;
+    const preco = precos[opcao] || 0;
+    this.adicionarItemDireto(nome, preco, descricao, { opcao });
+    this.fecharBebidaOpcoes();
   }
 }
 
